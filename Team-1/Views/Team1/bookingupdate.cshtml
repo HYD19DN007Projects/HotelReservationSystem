@@ -1,0 +1,67 @@
+﻿@model Team_1.Models.tblBooking
+@{
+    ViewBag.Title = "bookingupdate";
+}
+
+<center><h2>Booking Update</h2></center>
+@using (Html.BeginForm("Updatebook", "Team1"))
+{
+<link href="~/Mystyle/table.css" rel="stylesheet" />
+<table align="center">
+    <tr>
+        <td>BookingID</td>
+        <td>@Html.TextAreaFor(a => a.Booking_ID, new { @disabled = "true" })</td>
+    </tr>
+    <tr>
+        <td>CustomerID</td>
+        <td>@Html.TextBoxFor(a => a.Customer_ID)</td>
+    </tr>
+    <tr>
+        <td>HotelID</td>
+        <td>@Html.TextBoxFor(a => a.HotelID)</td>
+    </tr>
+
+    <tr>
+        <td>ArrivalDate</td>
+        <td>@Html.TextBoxFor(a => a.ArrivalDate)</td>
+    </tr>
+    <tr>
+        <td>DepatureDate</td>
+        <td>@Html.TextBoxFor(a => a.DepartureDate)</td>
+    </tr>
+    <tr>
+        <td>Number Of Adults</td>
+        <td>@Html.TextBoxFor(a => a.Number_of_Adults)</td>
+    </tr>
+    <tr>
+        <td>Number Of Children</td>
+        <td>@Html.TextBoxFor(a => a.Number_of_Children)</td>
+    </tr>
+    <tr>
+        <td>Number of Nights</td>
+        <td>@Html.TextBoxFor(a => a.Number_of_Nights)</td>
+    </tr>
+    <tr>
+        <td>RoomType</td>
+        <td>@Html.TextBoxFor(a => a.Room_Type)</td>
+    </tr>
+    <tr>
+        <td>Number Of Rooms</td>
+        <td>@Html.TextBoxFor(a => a.Number_of_Rooms)</td>
+    </tr>
+    <tr>
+        <td>
+            <input type="submit" />
+        </td>
+    </tr>
+  <tr> <td><h3 style="color:red"> @ViewBag.msg</h3></td> </tr> 
+</table>
+   
+}
+
+
+
+
+
+
+

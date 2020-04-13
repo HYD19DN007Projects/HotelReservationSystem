@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "gettingbookingdetails";
+
+}
+
+<center><h2>----Your Bookings----</h2></center>
+@using (Html.BeginForm())
+{
+    <link href="~/Mystyle/table.css" rel="stylesheet" />
+    if (ViewBag.List != null)
+    {
+    <table border="1" align="center">
+        
+        <tr>
+            <th>Booking_ID</th>
+            <th>Customer_ID</th>
+            <th>HotelID</th>
+            <th>BookingDate</th>
+            <th>ArrivalDate</th>
+            <th>DepartureDate</th>
+            <th>Number_of_Adults</th>
+            <th>Number_of_Children</th>
+            <th>Number_of_Nights</th>
+            <th>Room_Type</th>
+            <th>Number_of_Rooms</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+
+        @foreach (var e in ViewBag.List)
+        {
+            <tr>
+                <td>@e.Booking_ID</td>
+                <td>@e.Customer_ID</td>
+                <td>@e.HotelID</td>
+                <td>@e.BookingDate</td>
+                <td>@e.ArrivalDate</td>
+                <td>@e.DepartureDate</td>
+                <td>@e.Number_of_Adults</td>
+                <td>@e.Number_of_Children</td>
+                <td>@e.Number_of_Nights</td>
+                <td>@e.Room_Type</td>
+                <td>@e.Number_of_Rooms</td>
+                <td>@Html.ActionLink("edit", "bookingupdate", "Team1", new { id = e.Booking_ID }, null)</td>
+                <td>@Html.ActionLink("Delete", "Deletebooking", "Team1", new { id = e.Booking_ID }, null)</td>
+            </tr>
+
+        }
+        
+    </table>
+    }
+    else
+    {
+    
+
+<h4 style="color:red;font:bold"> @ViewBag.msg</h4>  
+    
+    }
+
+    <h4>@Html.ActionLink("back", "booking", "Team1")</h4>
+    @*if (ViewBag.msg != null)
+    {
+        @ViewBag.msg;
+    }*@
+}
+
+
+
+
+

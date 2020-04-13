@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Team_1.Models.tblHotelDetail>
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2> Welcome Customer</h2>
+@using (Html.BeginForm("DisplayDetails", "Team1"))
+{
+    if (Model != null)
+    {
+        <table border="1">
+            <tr>
+                <td>Button</td>
+                <td>Hotel_Name</td>
+            </tr>
+            @foreach (var E in Model)
+            {
+                <tr>
+                    <td>@Html.RadioButton("rdb", E.Hotel_Name)</td>
+                    <td>@E.Hotel_Name</td>
+                </tr>
+            }
+
+            <tr>
+                <td><input type="submit" /></td>
+            </tr>
+        </table>
+    }
+    <table>
+        <tr>
+            <td>
+                @Html.ActionLink("Register", "CustomerLogin", "Team1")
+            </td>
+        </tr>
+    </table>
+}
+
+

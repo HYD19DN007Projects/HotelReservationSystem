@@ -1,0 +1,117 @@
+﻿@model Team_1.Models.tblHotelDetail
+@{
+    ViewBag.Title = "DisplayDetails";
+}
+
+    <center><h2>DisplayDetails</h2></center>
+@using (Html.BeginForm())
+{
+    <table align="center">
+        <tr>
+            <td>
+                HotelId
+            </td>
+            <td>
+                @Html.TextBoxFor(a => a.HotelID)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                HotelName
+            </td>
+            <td>
+                @Html.TextBoxFor(a => a.Hotel_Name)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Country
+            </td>
+            <td>
+                @Html.TextBoxFor(a => a.Country)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                City
+            </td>
+            <td>
+                @Html.TextBoxFor(a => a.City)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Hotel_Description
+            </td>
+            <td>
+                @Html.TextAreaFor(a => a.Hotel_Description)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Number of AC Rooms
+            </td>
+            <td>
+                @Html.TextBoxFor(a => a.Number_of_AC_Rooms)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Number of  NON AC Rooms
+            </td>
+            <td>
+                @Html.TextBoxFor(a => a.Number_of_Non_AC_Rooms)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Rate for one night for Children AC
+            </td>
+            <td>
+                @Html.TextBoxFor(a => a.Rate_for_one_night_for_one_children_AC)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Rate for one night for Adult AC
+            </td>
+            <td>
+                @Html.TextBoxFor(a => a.Rate_for_one_night_for_one_adult_AC)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Rate for one night for Children NONAC
+            </td>
+            <td>
+                @Html.TextBoxFor(a => a.Rate_for_one_night_for_one_children_NONAC)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Rate for one night for Adult NONAC
+            </td>
+            <td>
+                @Html.TextBoxFor(a => a.Rate_for_one_night_for_one_adult_NONAC)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" />
+            </td>
+        </tr>
+    </table>
+
+}
+

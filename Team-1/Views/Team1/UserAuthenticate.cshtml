@@ -1,0 +1,44 @@
+﻿@model Team_1.Models.tblCustomer
+@{
+    ViewBag.Title = "UserAuthenticate";
+}
+
+    <center><h2>UserAuthenticate</h2></center>
+@using (Html.BeginForm("UserAuthenticate1","Team1"))
+{
+    <table align="center">
+        <tr>
+            <td>Customer ID</td>
+            <td>
+                @Html.TextBox("txtCustomerId", Request["txtCustomerId"])
+                      
+
+                    </td>
+           
+        </tr>
+        <tr>
+            <td>PhoneNumber</td>
+            <td>
+                @Html.TextBox("txtPhoneNumber", Request["txtPhoneNumber"])
+                      
+
+
+                    </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>
+                @Html.Password("txtPassword", Request["txtPassword"])
+                       
+
+
+
+                    </td>
+        </tr>
+        <tr>
+            <td><input type="submit" /></td>
+        </tr>
+    </table>
+}
+   
+

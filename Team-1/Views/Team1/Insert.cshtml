@@ -1,0 +1,161 @@
+﻿@model Team_1.Models.tblHotelDetail
+@{
+    ViewBag.Title = "Insert";
+}
+
+<center><h2>Add Details of WowHotel</h2></center>
+@using (Html.BeginForm())
+{
+
+    <link href="~/Mystyle/table.css" rel="stylesheet" />
+    <table align="center">
+        <tr>
+            <th>
+                HotelId
+            </th>
+            <td>
+                @Html.TextBoxFor(a => a.HotelID)
+                @Html.ValidationMessageFor(a => a.HotelID, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <th>
+                HotelName
+            </th>
+            <td>
+                @Html.TextBoxFor(a => a.Hotel_Name)
+                @Html.ValidationMessageFor(a => a.Hotel_Name, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Country
+            </th>
+            <td>
+                @Html.DropDownListFor(a => a.Country, new SelectList(ViewBag.L, "COUNTRY_NAME", "COUNTRY_NAME"), "---Select Your Country---*")
+                @Html.ValidationMessageFor(a => a.Country, "", new { @class = "text-danger" })
+
+            </td>
+
+        </tr>
+        <tr>
+            <th>
+                City
+            </th>
+            <td>
+                @Html.DropDownListFor(a => a.City, new SelectList(""), "---Select Your City---", new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.City, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Hotel_Description
+            </th>
+            <td>
+                @Html.TextAreaFor(a => a.Hotel_Description)
+                @Html.ValidationMessageFor(a => a.Hotel_Description, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Number of AC Rooms
+            </th>
+            <td>
+                @Html.TextBoxFor(a => a.Number_of_AC_Rooms)
+                @Html.ValidationMessageFor(a => a.Number_of_AC_Rooms, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Number of  NON AC Rooms
+            </th>
+            <td>
+                @Html.TextBoxFor(a => a.Number_of_Non_AC_Rooms)
+                @Html.ValidationMessageFor(a => a.Number_of_Non_AC_Rooms, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Rate for one Child for one AC-Room per Night
+            </th>
+            <td>
+                @Html.TextBoxFor(a => a.Rate_for_one_night_for_one_children_AC)
+                @Html.ValidationMessageFor(a => a.Rate_for_one_night_for_one_children_AC, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Rate for one Adult for one AC-Room per Night
+            </th>
+            <td>
+                @Html.TextBoxFor(a => a.Rate_for_one_night_for_one_adult_AC)
+                @Html.ValidationMessageFor(a => a.Rate_for_one_night_for_one_adult_AC, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Rate for one Child for one NONAC-Room per Night
+            </th>
+            <td>
+                @Html.TextBoxFor(a => a.Rate_for_one_night_for_one_children_NONAC)
+                @Html.ValidationMessageFor(a => a.Rate_for_one_night_for_one_children_NONAC, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Rate for one Adult for one NonAC-Room per Night
+            </th>
+            <td>
+                @Html.TextBoxFor(a => a.Rate_for_one_night_for_one_adult_NONAC)
+                @Html.ValidationMessageFor(a => a.Rate_for_one_night_for_one_adult_NONAC, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" />
+            </td>
+            <td>
+                @Html.ActionLink("BacktoList", "Login1", "Team1")
+            </td>
+        </tr>
+        <tr><td><h3 style="color:red">@ViewBag.msg</h3></td></tr>
+    </table>
+    
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+    $(document).ready(function ()
+    {
+        //alert("hii");
+        $("#Country").change(function ()
+        {
+            //alert($(this).val());
+            $.ajax({
+                type: "post",
+                url: '/Team1/GetCity?Country=' + $(this).val(),
+                contentType: "html",
+                success: function (response)
+                {
+                    //alert(response);
+                    $("#City").empty();
+                    $("#City").append(response);
+
+                }
+            }); //End of Ajax
+        });
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblBankDetails">
+          <Key>
+            <PropertyRef Name="Bank_ID" />
+          </Key>
+          <Property Name="Bank_ID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Bank_Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBooking">
+          <Key>
+            <PropertyRef Name="Booking_ID" />
+          </Key>
+          <Property Name="Booking_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="HotelID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="BookingDate" Type="datetime" Nullable="false" />
+          <Property Name="ArrivalDate" Type="datetime" Nullable="false" />
+          <Property Name="DepartureDate" Type="datetime" Nullable="false" />
+          <Property Name="Number_of_Adults" Type="int" Nullable="false" />
+          <Property Name="Number_of_Children" Type="int" Nullable="false" />
+          <Property Name="Number_of_Nights" Type="int" Nullable="false" />
+          <Property Name="Room_Type" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Number_of_Rooms" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="CITY_NAME" />
+          </Key>
+          <Property Name="COUNTRY_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CITY_NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCountry">
+          <Key>
+            <PropertyRef Name="COUNTRY_ID" />
+          </Key>
+          <Property Name="COUNTRY_ID" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="COUNTRY_NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="Customer_ID" />
+          </Key>
+          <Property Name="Customer_ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="ContactNumber" Type="bigint" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PinCode" Type="int" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CustomerType" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblHotelDetails">
+          <Key>
+            <PropertyRef Name="HotelID" />
+          </Key>
+          <Property Name="HotelID" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Hotel_Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Hotel_Description" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Number_of_AC_Rooms" Type="int" Nullable="false" />
+          <Property Name="Number_of_Non_AC_Rooms" Type="int" Nullable="false" />
+          <Property Name="Rate_for_one_night_for_one_children_AC" Type="int" Nullable="false" />
+          <Property Name="Rate_for_one_night_for_one_adult_AC" Type="int" Nullable="false" />
+          <Property Name="Rate_for_one_night_for_one_children_NONAC" Type="int" Nullable="false" />
+          <Property Name="Rate_for_one_night_for_one_adult_NONAC" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPayment">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Bank_ID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Credit_card_Number" Type="bigint" Nullable="false" />
+          <Property Name="Card_Type" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name_on_Card" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Date_of_Transaction" Type="datetime" Nullable="false" />
+          <Property Name="Expiry_Date" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CVV_Number" Type="int" Nullable="false" />
+          <Property Name="Account_Number" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Pin_Number" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblBooking_tblCustomer">
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblHotelDetails">
+          <End Role="tblHotelDetails" Type="Self.tblHotelDetails" Multiplicity="1" />
+          <End Role="tblBooking" Type="Self.tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHotelDetails">
+              <PropertyRef Name="HotelID" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCity_tblCountry">
+          <End Role="tblCountry" Type="Self.tblCountry" Multiplicity="1" />
+          <End Role="tblCity" Type="Self.tblCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCountry">
+              <PropertyRef Name="COUNTRY_ID" />
+            </Principal>
+            <Dependent Role="tblCity">
+              <PropertyRef Name="COUNTRY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPayment_tblBankDetails">
+          <End Role="tblBankDetails" Type="Self.tblBankDetails" Multiplicity="1" />
+          <End Role="tblPayment" Type="Self.tblPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBankDetails">
+              <PropertyRef Name="Bank_ID" />
+            </Principal>
+            <Dependent Role="tblPayment">
+              <PropertyRef Name="Bank_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPayment_tblCustomer">
+          <End Role="tblCustomer" Type="Self.tblCustomer" Multiplicity="1" />
+          <End Role="tblPayment" Type="Self.tblPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="tblPayment">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Proc1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerName" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="tblBankDetails" EntityType="Self.tblBankDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBooking" EntityType="Self.tblBooking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCity" EntityType="Self.tblCity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCountry" EntityType="Self.tblCountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCustomer" EntityType="Self.tblCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHotelDetails" EntityType="Self.tblHotelDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLogin" EntityType="Self.tblLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPayment" EntityType="Self.tblPayment" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblBooking_tblCustomer" Association="Self.FK_tblBooking_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblHotelDetails" Association="Self.FK_tblBooking_tblHotelDetails">
+            <End Role="tblHotelDetails" EntitySet="tblHotelDetails" />
+            <End Role="tblBooking" EntitySet="tblBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCity_tblCountry" Association="Self.FK_tblCity_tblCountry">
+            <End Role="tblCountry" EntitySet="tblCountry" />
+            <End Role="tblCity" EntitySet="tblCity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPayment_tblBankDetails" Association="Self.FK_tblPayment_tblBankDetails">
+            <End Role="tblBankDetails" EntitySet="tblBankDetails" />
+            <End Role="tblPayment" EntitySet="tblPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPayment_tblCustomer" Association="Self.FK_tblPayment_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblPayment" EntitySet="tblPayment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="Proc1" ReturnType="Collection(String)">
+          <Parameter Name="CustomerName" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tblBankDetails" EntityType="Model.tblBankDetail" />
+          <EntitySet Name="tblBookings" EntityType="Model.tblBooking" />
+          <EntitySet Name="tblCustomers" EntityType="Model.tblCustomer" />
+          <EntitySet Name="tblHotelDetails" EntityType="Model.tblHotelDetail" />
+          <EntitySet Name="tblLogins" EntityType="Model.tblLogin" />
+          <EntitySet Name="tblPayments" EntityType="Model.tblPayment" />
+          <AssociationSet Name="FK_tblPayment_tblBankDetails" Association="Model.FK_tblPayment_tblBankDetails">
+            <End Role="tblBankDetail" EntitySet="tblBankDetails" />
+            <End Role="tblPayment" EntitySet="tblPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblCustomer" Association="Model.FK_tblBooking_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomers" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBooking_tblHotelDetails" Association="Model.FK_tblBooking_tblHotelDetails">
+            <End Role="tblHotelDetail" EntitySet="tblHotelDetails" />
+            <End Role="tblBooking" EntitySet="tblBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPayment_tblCustomer" Association="Model.FK_tblPayment_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomers" />
+            <End Role="tblPayment" EntitySet="tblPayments" />
+          </AssociationSet>
+          <EntitySet Name="tblCities" EntityType="Model.tblCity" />
+          <EntitySet Name="tblCountries" EntityType="Model.tblCountry" />
+          <AssociationSet Name="FK_tblCity_tblCountry" Association="Model.FK_tblCity_tblCountry">
+            <End Role="tblCountry" EntitySet="tblCountries" />
+            <End Role="tblCity" EntitySet="tblCities" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblBankDetail">
+          <Key>
+            <PropertyRef Name="Bank_ID" />
+          </Key>
+          <Property Name="Bank_ID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Bank_Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblPayments" Relationship="Model.FK_tblPayment_tblBankDetails" FromRole="tblBankDetail" ToRole="tblPayment" />
+        </EntityType>
+        <EntityType Name="tblBooking">
+          <Key>
+            <PropertyRef Name="Booking_ID" />
+          </Key>
+          <Property Name="Booking_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="HotelID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="BookingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ArrivalDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DepartureDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Number_of_Adults" Type="Int32" Nullable="false" />
+          <Property Name="Number_of_Children" Type="Int32" Nullable="false" />
+          <Property Name="Number_of_Nights" Type="Int32" Nullable="false" />
+          <Property Name="Room_Type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Number_of_Rooms" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblCustomer" Relationship="Model.FK_tblBooking_tblCustomer" FromRole="tblBooking" ToRole="tblCustomer" />
+          <NavigationProperty Name="tblHotelDetail" Relationship="Model.FK_tblBooking_tblHotelDetails" FromRole="tblBooking" ToRole="tblHotelDetail" />
+        </EntityType>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="Customer_ID" />
+          </Key>
+          <Property Name="Customer_ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ContactNumber" Type="Int64" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PinCode" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblBookings" Relationship="Model.FK_tblBooking_tblCustomer" FromRole="tblCustomer" ToRole="tblBooking" />
+          <NavigationProperty Name="tblPayments" Relationship="Model.FK_tblPayment_tblCustomer" FromRole="tblCustomer" ToRole="tblPayment" />
+        </EntityType>
+        <EntityType Name="tblHotelDetail">
+          <Key>
+            <PropertyRef Name="HotelID" />
+          </Key>
+          <Property Name="HotelID" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Hotel_Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Hotel_Description" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Number_of_AC_Rooms" Type="Int32" Nullable="false" />
+          <Property Name="Number_of_Non_AC_Rooms" Type="Int32" Nullable="false" />
+          <Property Name="Rate_for_one_night_for_one_children_AC" Type="Int32" Nullable="false" />
+          <Property Name="Rate_for_one_night_for_one_adult_AC" Type="Int32" Nullable="false" />
+          <Property Name="Rate_for_one_night_for_one_children_NONAC" Type="Int32" Nullable="false" />
+          <Property Name="Rate_for_one_night_for_one_adult_NONAC" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblBookings" Relationship="Model.FK_tblBooking_tblHotelDetails" FromRole="tblHotelDetail" ToRole="tblBooking" />
+        </EntityType>
+        <EntityType Name="tblLogin">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblPayment">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_ID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Bank_ID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Credit_card_Number" Type="Int64" Nullable="false" />
+          <Property Name="Card_Type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Name_on_Card" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Date_of_Transaction" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Expiry_Date" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CVV_Number" Type="Int32" Nullable="false" />
+          <Property Name="Account_Number" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Pin_Number" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblBankDetail" Relationship="Model.FK_tblPayment_tblBankDetails" FromRole="tblPayment" ToRole="tblBankDetail" />
+          <NavigationProperty Name="tblCustomer" Relationship="Model.FK_tblPayment_tblCustomer" FromRole="tblPayment" ToRole="tblCustomer" />
+        </EntityType>
+        <Association Name="FK_tblPayment_tblBankDetails">
+          <End Type="Model.tblBankDetail" Role="tblBankDetail" Multiplicity="1" />
+          <End Type="Model.tblPayment" Role="tblPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBankDetail">
+              <PropertyRef Name="Bank_ID" />
+            </Principal>
+            <Dependent Role="tblPayment">
+              <PropertyRef Name="Bank_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblCustomer">
+          <End Type="Model.tblCustomer" Role="tblCustomer" Multiplicity="1" />
+          <End Type="Model.tblBooking" Role="tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBooking_tblHotelDetails">
+          <End Type="Model.tblHotelDetail" Role="tblHotelDetail" Multiplicity="1" />
+          <End Type="Model.tblBooking" Role="tblBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHotelDetail">
+              <PropertyRef Name="HotelID" />
+            </Principal>
+            <Dependent Role="tblBooking">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPayment_tblCustomer">
+          <End Type="Model.tblCustomer" Role="tblCustomer" Multiplicity="1" />
+          <End Type="Model.tblPayment" Role="tblPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="tblPayment">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblCity">
+          <Key>
+            <PropertyRef Name="CITY_NAME" />
+          </Key>
+          <Property Name="COUNTRY_ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CITY_NAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCountry" Relationship="Model.FK_tblCity_tblCountry" FromRole="tblCity" ToRole="tblCountry" />
+        </EntityType>
+        <EntityType Name="tblCountry">
+          <Key>
+            <PropertyRef Name="COUNTRY_ID" />
+          </Key>
+          <Property Name="COUNTRY_ID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="COUNTRY_NAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCities" Relationship="Model.FK_tblCity_tblCountry" FromRole="tblCountry" ToRole="tblCity" />
+        </EntityType>
+        <Association Name="FK_tblCity_tblCountry">
+          <End Type="Model.tblCountry" Role="tblCountry" Multiplicity="1" />
+          <End Type="Model.tblCity" Role="tblCity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCountry">
+              <PropertyRef Name="COUNTRY_ID" />
+            </Principal>
+            <Dependent Role="tblCity">
+              <PropertyRef Name="COUNTRY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities1">
+          <FunctionImportMapping FunctionImportName="Proc1" FunctionName="Model.Store.Proc1" />
+          <EntitySetMapping Name="tblBankDetails">
+            <EntityTypeMapping TypeName="Model.tblBankDetail">
+              <MappingFragment StoreEntitySet="tblBankDetails">
+                <ScalarProperty Name="Bank_Name" ColumnName="Bank_Name" />
+                <ScalarProperty Name="Bank_ID" ColumnName="Bank_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBookings">
+            <EntityTypeMapping TypeName="Model.tblBooking">
+              <MappingFragment StoreEntitySet="tblBooking">
+                <ScalarProperty Name="Number_of_Rooms" ColumnName="Number_of_Rooms" />
+                <ScalarProperty Name="Room_Type" ColumnName="Room_Type" />
+                <ScalarProperty Name="Number_of_Nights" ColumnName="Number_of_Nights" />
+                <ScalarProperty Name="Number_of_Children" ColumnName="Number_of_Children" />
+                <ScalarProperty Name="Number_of_Adults" ColumnName="Number_of_Adults" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+                <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Booking_ID" ColumnName="Booking_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCustomers">
+            <EntityTypeMapping TypeName="Model.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomer">
+                <ScalarProperty Name="CustomerType" ColumnName="CustomerType" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHotelDetails">
+            <EntityTypeMapping TypeName="Model.tblHotelDetail">
+              <MappingFragment StoreEntitySet="tblHotelDetails">
+                <ScalarProperty Name="Rate_for_one_night_for_one_adult_NONAC" ColumnName="Rate_for_one_night_for_one_adult_NONAC" />
+                <ScalarProperty Name="Rate_for_one_night_for_one_children_NONAC" ColumnName="Rate_for_one_night_for_one_children_NONAC" />
+                <ScalarProperty Name="Rate_for_one_night_for_one_adult_AC" ColumnName="Rate_for_one_night_for_one_adult_AC" />
+                <ScalarProperty Name="Rate_for_one_night_for_one_children_AC" ColumnName="Rate_for_one_night_for_one_children_AC" />
+                <ScalarProperty Name="Number_of_Non_AC_Rooms" ColumnName="Number_of_Non_AC_Rooms" />
+                <ScalarProperty Name="Number_of_AC_Rooms" ColumnName="Number_of_AC_Rooms" />
+                <ScalarProperty Name="Hotel_Description" ColumnName="Hotel_Description" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Hotel_Name" ColumnName="Hotel_Name" />
+                <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLogins">
+            <EntityTypeMapping TypeName="Model.tblLogin">
+              <MappingFragment StoreEntitySet="tblLogin">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPayments">
+            <EntityTypeMapping TypeName="Model.tblPayment">
+              <MappingFragment StoreEntitySet="tblPayment">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Pin_Number" ColumnName="Pin_Number" />
+                <ScalarProperty Name="Account_Number" ColumnName="Account_Number" />
+                <ScalarProperty Name="CVV_Number" ColumnName="CVV_Number" />
+                <ScalarProperty Name="Expiry_Date" ColumnName="Expiry_Date" />
+                <ScalarProperty Name="Date_of_Transaction" ColumnName="Date_of_Transaction" />
+                <ScalarProperty Name="Name_on_Card" ColumnName="Name_on_Card" />
+                <ScalarProperty Name="Card_Type" ColumnName="Card_Type" />
+                <ScalarProperty Name="Credit_card_Number" ColumnName="Credit_card_Number" />
+                <ScalarProperty Name="Bank_ID" ColumnName="Bank_ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCities">
+            <EntityTypeMapping TypeName="Model.tblCity">
+              <MappingFragment StoreEntitySet="tblCity">
+                <ScalarProperty Name="CITY_NAME" ColumnName="CITY_NAME" />
+                <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCountries">
+            <EntityTypeMapping TypeName="Model.tblCountry">
+              <MappingFragment StoreEntitySet="tblCountry">
+                <ScalarProperty Name="COUNTRY_NAME" ColumnName="COUNTRY_NAME" />
+                <ScalarProperty Name="COUNTRY_ID" ColumnName="COUNTRY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="7b44bf180bd3468dadd4b9e6afe7259d" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.tblBankDetail" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="Model.tblBooking" Width="1.5" PointX="6" PointY="5.625" />
+        <EntityTypeShape EntityType="Model.tblCustomer" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Model.tblHotelDetail" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.tblLogin" Width="1.5" PointX="5.75" PointY="3" />
+        <EntityTypeShape EntityType="Model.tblPayment" Width="1.5" PointX="3" PointY="5.5" />
+        <AssociationConnector Association="Model.FK_tblPayment_tblBankDetails" />
+        <AssociationConnector Association="Model.FK_tblBooking_tblCustomer" />
+        <AssociationConnector Association="Model.FK_tblBooking_tblHotelDetails" />
+        <AssociationConnector Association="Model.FK_tblPayment_tblCustomer" />
+        <EntityTypeShape EntityType="Model.tblCity" Width="1.5" PointX="8" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.tblCountry" Width="1.5" PointX="5.75" PointY="0.75" />
+        <AssociationConnector Association="Model.FK_tblCity_tblCountry" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

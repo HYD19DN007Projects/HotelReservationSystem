@@ -1,0 +1,82 @@
+﻿@model  IEnumerable<Team_1.Models.tblHotelDetail>
+@{
+    ViewBag.Title = "Login1";
+   
+}
+
+
+
+<center><h2 style="color:darkviolet">--WELCOME ADMIN--</h2></center>
+
+@*<p>
+
+    @Html.ActionLink("Insert", "Insert", "Team1")
+
+</p>*@
+@using (Html.BeginForm())
+{
+    <link href="~/Mystyle/table.css" rel="stylesheet" />
+    <table border="1">
+        <tr>
+            <th>HotelID</th>
+            <th>HotelName</th>
+            <th>Country</th>
+            <th>City</th>
+            <th>HotelDescription</th>
+            <th>No of Ac Rooms</th>
+            <th>No of Non Ac Rooms</th>
+            <th>Rate for one Child for one Ac-Room per Night</th>
+            <th>Rate for one adult for one Ac-Room per Night</th>
+            <th>Rate for one child for one NonAc-Room per Night</th>
+            <th>Rate for one adult for one NonAc-Room per Night</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        @foreach (var E in Model)
+        {
+            <tr>
+                <td>@E.HotelID</td>
+                <td>@E.Hotel_Name</td>
+                <td>@E.Country</td>
+                <td>@E.City</td>
+                <td>@E.Hotel_Description</td>
+                <td>@E.Number_of_AC_Rooms</td>
+                <td>@E.Number_of_Non_AC_Rooms</td>
+                <td>@E.Rate_for_one_night_for_one_children_AC</td>
+                <td>@E.Rate_for_one_night_for_one_adult_AC</td>
+                <td>@E.Rate_for_one_night_for_one_children_NONAC</td>
+                <td>@E.Rate_for_one_night_for_one_adult_NONAC</td>
+
+                <td>
+                    @Html.ActionLink("Update", "HotelUpdate", "Team1", new { id = E.HotelID }, null)
+
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", "Team1", new { id = E.HotelID }, null)
+                </td>
+
+
+
+
+
+
+            </tr>
+        }
+        @*<tr>
+            <td>
+                @Html.ActionLink("Logout", "Logout", "Team1")
+
+            </td>
+        </tr>*@
+
+
+
+
+
+
+
+
+
+    </table>
+}
+

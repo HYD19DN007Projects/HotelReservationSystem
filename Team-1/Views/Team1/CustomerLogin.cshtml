@@ -1,0 +1,119 @@
+﻿@model Team_1.Models.Customer
+@{
+    ViewBag.Title = "CustomerLogin";
+}
+
+<center><h2>--Registration Page--</h2></center>
+@using (Html.BeginForm())
+{
+<link href="~/Mystyle/table.css" rel="stylesheet" />
+<table align="center">
+    @*<tr>
+        <th>CustomerId</th>
+        <td>@Html.TextBoxFor(a => a.Customer_ID, new { @disabled = "true" })</td>
+     
+    </tr>*@
+
+    <tr>
+        <th>CustomerName</th>
+        <td>
+            @Html.TextBoxFor(a => a.CustomerName)
+
+            @Html.ValidationMessageFor(a => a.CustomerName, "", new { @class = "text-danger" })
+        </td>
+        
+    </tr>
+    <tr>
+        <th>
+            Password
+        </th>
+        <td>
+            @Html.PasswordFor(a => a.Password)
+            @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+    <tr>
+        <th>
+            ConfirmPassword
+        </th>
+        <td>
+            @Html.PasswordFor(a => a.Confirmpassword)
+            @Html.ValidationMessageFor(a => a.Confirmpassword, "", new { @class = "text-danger" })
+        </td>
+    </tr>
+
+    <tr>
+        <th>DateOfBirth</th>
+        <td>
+            @Html.TextBoxFor(a => a.DateOfBirth,"",new { @type = "date" })
+                @Html.ValidationMessageFor(a => a.DateOfBirth, "", new { @class = "text-danger" })
+
+            </td>
+
+    </tr>
+    <tr>
+        <th>ContactNumber</th>
+        <td>
+            @Html.TextBoxFor(a => a.ContactNumber)
+                @Html.ValidationMessageFor(a => a.ContactNumber, "", new { @class = "text-danger" })
+
+            </td>
+    </tr>
+    <tr>
+        <th>EmailAddress</th>
+        <td>
+            @Html.TextBoxFor(a => a.EmailAddress)
+                @Html.ValidationMessageFor(a => a.EmailAddress, "", new { @class = "text-danger" })
+
+            </td>
+    </tr>
+    <tr>
+        <th>Country</th>
+        <td>
+            @Html.TextBoxFor(a => a.Country)
+                @Html.ValidationMessageFor(a => a.Country, "", new { @class = "text-danger" })
+
+            </td>
+    </tr>
+    <tr>
+        <th>State</th>
+        <td>
+            @Html.TextBoxFor(a => a.State)
+                @Html.ValidationMessageFor(a => a.State, "", new { @class = "text-danger" })
+            </td>
+    </tr>
+    <tr>
+        <th>City</th>
+        <td>
+            @Html.TextBoxFor(a => a.City)
+                @Html.ValidationMessageFor(a => a.City, "", new { @class = "text-danger" })
+
+            </td>
+    </tr>
+    <tr>
+        <th>PinCode</th>
+        <td>
+            @Html.TextBoxFor(a => a.PinCode)
+                @Html.ValidationMessageFor(a => a.PinCode, "", new { @class = "text-danger" })
+            </td>
+    </tr>
+    @*<tr>
+        <th>CustomerType</th>
+        <td>@Html.TextBoxFor(a => a.CustomerType,new { @disabled = "true" })</td>
+    </tr>*@
+
+    <tr>
+        <td>
+            <input type="submit" />
+        </td>
+        <td>
+            @Html.ActionLink("Back to loginpage","Login","Team1")
+        </td>
+    </tr>
+    <tr>
+        <td width="100%"><h3 style="color:forestgreen">@ViewBag.msg</h3> </td>
+    </tr>
+</table>
+   
+}
+

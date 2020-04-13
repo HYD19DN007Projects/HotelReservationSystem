@@ -1,0 +1,39 @@
+﻿@{
+
+    if (HttpContext.Current.Session["UserType"] != null)
+    {
+        if (HttpContext.Current.Session["UserType"].ToString() == "Admin")
+        {
+            Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+        }
+        else if (HttpContext.Current.Session["UserType"].ToString() == "Customer")
+        {
+            Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+        }
+
+    }
+    else
+    {
+        if (!Request.Url.AbsolutePath.ToString().Contains("/Team1/About")
+            && !Request.Url.AbsolutePath.ToString().Contains("/Team1/Contact")
+            && !Request.Url.AbsolutePath.ToString().Contains("/Team1/Login")
+            &&!Request.Url.AbsolutePath.ToString().Contains("/Team1/CustomerLogin")
+            &&!Request.Url.AbsolutePath.ToString().Contains("/Team1/Index"))
+        {
+
+            Response.Redirect("/Team1/Login");
+
+        }
+        //else if(Request.Url.AbsolutePath.ToString().Contains("/Team1/CustomerLogin"))
+        //    {
+        //    Response.Redirect("/Team1/CustomerLogin"); 
+        //}
+       
+
+            Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+        
+
+
+    }
+
+}

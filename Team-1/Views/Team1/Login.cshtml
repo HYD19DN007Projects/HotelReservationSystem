@@ -1,0 +1,104 @@
+﻿@model Team_1.Models.tblLogin
+@{
+    ViewBag.Title = "Login";
+   
+}
+
+<center><h2>Login Page</h2></center>
+@using (Html.BeginForm())
+{
+
+    
+<body>
+    <table align="center">
+        <tr>
+            <td>
+                <h4>UserId*</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBoxFor(a => a.UserId)
+                @Html.ValidationMessageFor(a => a.UserId, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Password*</h4>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.PasswordFor(a => a.Password)
+                @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        @*<tr>
+                <td>
+                    UserType
+                </td>
+                <td>
+                    @Html.TextBoxFor(a => a.UserType)
+
+                </td>
+            </tr>*@
+        <tr>
+            <td>
+                <h5> Already Registered user?</h5>
+            </td>
+            <td>
+                <input type="submit" class="btn-success" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h5> @Html.ActionLink("New Customer", "CustomerLogin", "Team1", new { @style = "color:grey;" })</h5>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                @ViewBag.msg
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+            </td>
+
+        </tr>
+
+
+    </table>
+
+</body>
+       
+    
+
+}
+

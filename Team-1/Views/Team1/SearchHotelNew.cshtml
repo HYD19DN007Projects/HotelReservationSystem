@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "SearchHotelNew";
+
+  
+
+}
+
+@*<table >
+    <tr>
+        <th>
+            @Html.ActionLink("Search for hotel", "SearchHotelNew", "Team1")
+        </th>
+       
+        <th>
+            @Html.ActionLink("Book for a hotel", "booking", "Team1")
+        </th>
+        <th>
+            @Html.ActionLink("Logout", "Logout", "Team1")
+        </th>
+    </tr>
+</table>*@
+<center><h2>---SearchForHotel---</h2></center>
+@using (Html.BeginForm("SearchHotel1", "Team1"))
+{
+
+    <link href="~/Mystyle/table.css" rel="stylesheet" />
+    <table align="center">
+        <tr>
+            <td>Search By Using City Or HotelName</td>
+        </tr>
+        <tr>
+            <td>@Html.RadioButton("rdb", "rdbHotelName", new { onclick = "func1();" }) HotelName</td>
+            <td>@Html.TextBox("txtSearchHName", Request["txtSearchHName"], new { @disabled = "true" })</td>
+        </tr>
+        <tr>
+            <td>@Html.RadioButton("rdb", "rdbCity", new { onclick = "func();" })HotelCity</td>
+            <td>@Html.TextBox("txtSearchCity", Request["txtSearchCity"], new { @disabled = "true" })</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="search" /></td>
+            <td></td>
+        </tr>
+    </table>
+
+    if (ViewBag.List != null)
+    {
+        <table border="1">
+            <tr>
+                <td>HotelId</td>
+                <td>HotelName</td>
+                <td>Country</td>
+                <td>City</td>
+                <td>Hotel_Description</td>
+                <td> Number of AC Rooms</td>
+                <td>Number of  NON AC Rooms</td>
+                <td>Rate for one night for Children AC</td>
+                <td>Rate for one night for Adult AC</td>
+                <td>Rate for one night for Children NONAC</td>
+                <td>Rate for one night for Adult NONAC</td>
+            </tr>
+            @foreach (var E in ViewBag.List)
+            {
+        <tr>
+            <td>@E.HotelID</td>
+            <td>@E.Hotel_Name</td>
+            <td>@E.Country</td>
+            <td>@E.City</td>
+            <td>@E.Hotel_Description</td>
+            <td>@E.Number_of_AC_Rooms</td>UserLogin
+            <td>@E.Number_of_Non_AC_Rooms</td>
+            <td>@E.Rate_for_one_night_for_one_children_AC</td>
+            <td>@E.Rate_for_one_night_for_one_adult_AC</td>
+            <td>@E.Rate_for_one_night_for_one_children_NONAC</td>
+            <td>@E.Rate_for_one_night_for_one_adult_NONAC</td>
+        </tr>
+            }
+            <tr>
+                @*<td>
+                        @Html.ActionLink("BacktoList", "UserLogin", "Team1")
+                    </td>*@
+            </tr>
+        </table>
+    }
+    else
+    {
+
+        @ViewBag.msg
+    }
+   // <h3> @Html.ActionLink("BacktoList", "", "Team1")</h3>
+}
+    <script>
+        function func1() {
+
+        
+            document.getElementById("txtSearchCity").disabled = true;
+            document.getElementById("txtSearchHName").disabled = false;
+
+
+        }
+        function func() {
+
+
+            document.getElementById("txtSearchHName").disabled = true;
+            document.getElementById("txtSearchCity").disabled = false;
+        }
+    </script>
+
+

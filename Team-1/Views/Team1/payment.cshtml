@@ -1,0 +1,91 @@
+﻿@model Team_1.Models.tblPayment
+@{
+    ViewBag.Title = "payment";
+}
+
+<center><h2>--Payment--</h2></center>
+@using (Html.BeginForm("payment1", "Team1"))
+{
+    <link href="~/Mystyle/table.css" rel="stylesheet" />
+    <table align="center">
+
+
+        <tr>
+            <td>CustomerID</td>
+            <td>@Html.TextBoxFor(a => a.Customer_ID)</td>
+        </tr>
+        <tr>
+            <td>BankId</td>
+            <td>@Html.DropDownListFor(a => a.Bank_ID, new SelectList(ViewBag.bankid, "Bank_ID", "Bank_ID"), "select bankid")</td>
+        </tr>
+
+        <tr>
+            <td>credit card number</td>
+            <td>
+                @Html.TextBoxFor(a => a.Credit_card_Number)
+                @Html.ValidationMessageFor(a => a.Credit_card_Number, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>card type</td>
+            <td>
+                @Html.TextBoxFor(a => a.Card_Type)
+                @Html.ValidationMessageFor(a => a.Card_Type, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>Name on Card</td>
+            <td>
+                @Html.TextBoxFor(a => a.Name_on_Card)
+                @Html.ValidationMessageFor(a => a.Name_on_Card, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>Expiry Date</td>
+            <td>
+                @Html.TextBoxFor(a => a.Expiry_Date)
+                @Html.ValidationMessageFor(a => a.Expiry_Date, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>cvv number</td>
+            <td>
+                @Html.PasswordFor(a => a.CVV_Number)
+                @Html.ValidationMessageFor(a => a.CVV_Number, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>Account Number</td>
+            <td>
+                @Html.TextBoxFor(a => a.Account_Number)
+                @Html.ValidationMessageFor(a => a.Account_Number, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>pin number</td>
+            <td>
+                @Html.PasswordFor(a => a.Pin_Number)
+                @Html.ValidationMessageFor(a => a.Pin_Number, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>Amount</td>
+            <td>@Html.TextBoxFor(a => a.Amount, new { Value = ViewBag.msg })</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" />
+            </td>
+        </tr>
+    </table>
+
+}
+
+
+
+
+
+
+

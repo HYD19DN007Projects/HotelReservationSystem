@@ -1,0 +1,22 @@
+﻿@model Team_1.Models.tblHotelDetail
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>---Delete---</h2>
+
+<h3>
+    @ViewBag.msg
+</h3>
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>
+                @Html.ActionLink("BacktoList", "Login1", "Team1")
+            </td>
+        </tr>
+    </table>
+}
+
+

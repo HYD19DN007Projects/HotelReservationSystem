@@ -1,0 +1,102 @@
+﻿@model Team_1.Models.tblBooking
+@{
+    ViewBag.Title = "booking";
+    
+
+}
+
+    <center><h2>----Booking----</h2></center>
+@using (Html.BeginForm("booking1", "Team1"))
+{
+<link href="~/Mystyle/table.css" rel="stylesheet" />
+<table align="center">
+
+    <tr>
+        <th>CustomerID</th>
+        <td>
+            @Html.TextBoxFor(a => a.Customer_ID, new { Value = ViewBag.x })
+        @Html.ValidationMessageFor(a => a.Customer_ID, "", new { @class = "text-danger" })
+    </td>
+
+</tr>
+<tr>
+    <th>HotelID</th>
+    <td>
+        @Html.TextBoxFor(a => a.HotelID)
+    @Html.ValidationMessageFor(a => a.HotelID, "", new { @class = "text-danger" })
+</td>
+</tr>
+
+<tr>
+    <th>ArrivalDate</th>
+    <td>
+        @Html.TextBoxFor(a => a.ArrivalDate, new { @type = "date" })
+    @Html.ValidationMessageFor(a => a.ArrivalDate, "", new { @class = "text-danger" })
+</td>
+</tr>
+<tr>
+    <th>DepatureDate</th>
+    <td>
+        @Html.TextBoxFor(a => a.DepartureDate, new { @type = "date" })
+    @Html.ValidationMessageFor(a => a.DepartureDate, "", new { @class = "text-danger" })
+</td>
+</tr>
+<tr>
+    <th>Number Of Adults</th>
+    <td>
+        @Html.TextBoxFor(a => a.Number_of_Adults)
+    @Html.ValidationMessageFor(a => a.Number_of_Adults, "", new { @class = "text-danger" })
+</td>
+</tr>
+<tr>
+    <th>Number Of Children</th>
+    <td>
+        @Html.TextBoxFor(a => a.Number_of_Children)
+    @Html.ValidationMessageFor(a => a.Number_of_Children, "", new { @class = "text-danger" })
+</td>
+</tr>
+<tr>
+    <th>Number of Nights</th>
+    <td>
+        @Html.TextBoxFor(a => a.Number_of_Nights)
+    @Html.ValidationMessageFor(a => a.Number_of_Nights, "", new { @class = "text-danger" })
+</td>
+</tr>
+<tr>
+    <th>RoomType</th>
+    <td>
+        @Html.DropDownListFor(a => a.Room_Type, new List<SelectListItem>
+            {
+            new SelectListItem {Value="AC",Text="AC"},
+            new SelectListItem {Value="NONAC",Text="NONAC"}
+            }, "Select anytype")
+        @Html.ValidationMessageFor(a => a.Room_Type, "", new { @class = "text-danger" })
+    </td>
+</tr>
+<tr>
+    <th>Number Of Rooms</th>
+    <td>
+        @Html.TextBoxFor(a => a.Number_of_Rooms)
+    @Html.ValidationMessageFor(a => a.Number_of_Rooms, "", new { @class = "text-danger" })
+</td>
+</tr>
+<tr>
+    <th>
+        <input type="submit" />
+    </th>
+    <th></th>
+</tr>
+<tr>
+    <th>
+        @Html.ActionLink("View Bookings", "gettingbookingdetails", "Team1")
+    </th>
+</tr>
+<tr><th width="500"><h3 style="color:red">@ViewBag.msg</h3></th> </tr>
+    </table>
+
+}
+
+
+
+
+

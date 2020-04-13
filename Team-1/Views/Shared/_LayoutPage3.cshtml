@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Mystyle/Mystyle.css" rel="stylesheet" />
+
+    @*<img src="~/images/rrrr.jpg" width="1500" height="300" />*@
+</head>
+<body>
+    <div>
+        <img src="~/images/pic1.jpg" / width="1400" height="350" class="img">
+    </div>
+    @if (HttpContext.Current.Session["user"] != null)
+    {
+
+        <div>
+            <ul>
+                <li><a href="/Team1/SearchHotelNew">Search Hotel</a></li>
+                <li><a href="/Team1/booking">Booking</a></li>
+                <li><a href="/Team1/Logout">Logout</a></li>
+
+
+
+            </ul>
+            <table>
+                <tr>
+                    <td>
+                        <h1 style="color:deepskyblue ; font:bold;font-family:Bernard MT Condensed">
+                            Welcome @HttpContext.Current.Session["user"].ToString()
+                        </h1>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+    }
+
+    else
+    {
+
+        Response.Redirect("~/Team1/Login");
+    }
+</body>
+</html>
